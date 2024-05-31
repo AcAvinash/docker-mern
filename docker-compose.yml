@@ -1,0 +1,39 @@
+version: '3'
+services:
+  nginx: 
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - "3080:80"
+    depends_on:
+      - nodeserver
+      - client
+  nodeserver:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./server/
+    volumes:
+      - ./server/node_modules:/app/node_modules
+      - ./server/:/app
+    environment:
+      - MONGO_DB_CLOUD_URL=mongodb+srv://AvinashKumarSingh:Avinash@doc-contact-manager.io3ysrz.mongodb.net/?retryWrites=true&w=majority&appName=doc-contact-manager
+      - MONGO_DB_DATABASE=doc-contact-manager
+      - JWT_SECRET_KEY=$2a$10$wTOxgJsVB8xStAQO1saV
+      - NODE_ENV=production
+    ports:
+      - "4000:4000"
+  client:
+    build:
+      dockerfile: Dockerfile
+      context: ./client/
+    volumes:
+      - ./client/node_modules:/app/node_modules
+      - ./client/:/app
+    ports:
+      - "3000:3000"
+
+
+

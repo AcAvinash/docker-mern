@@ -1,0 +1,18 @@
+FROM node:alpine
+
+WORKDIR /app
+
+COPY ./package.json ./
+
+RUN npm i --silent
+
+COPY . ./
+
+ENV MONGO_DB_CLOUD_URL=mongodb+srv://AlankarSingh:Alankarsingh@contact-manager.7nn8si5.mongodb.net/?retryWrites=true&w=majority&appName=contact-manager
+ENV MONGO_DB_DATABASE=contact-manager
+ENV JWT_SECRET_KEY=$2a$10$wTOxgJsVB8xStAQO1saV
+ENV NODE_ENV=production
+
+CMD ["npm","run", "dev"]
+
+
