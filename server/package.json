@@ -4,7 +4,9 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
-    "start": "nodemon server.ts"
+    "start": "babel-node build/server.ts",
+    "dev": "nodemon --exec babel-node src/server.ts",
+    "build": "babel src -d build"
   },
   "keywords": [],
   "author": "",
