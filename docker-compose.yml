@@ -19,9 +19,7 @@ services:
       - ./server/node_modules:/app/node_modules
       - ./server/:/app
     environment:
-      - MONGO_DB_CLOUD_URL=mongodb+srv://AvinashKumarSingh:Avinash@doc-contact-manager.io3ysrz.mongodb.net/?retryWrites=true&w=majority&appName=doc-contact-manager
-      - MONGO_DB_DATABASE=doc-contact-manager
-      - JWT_SECRET_KEY=$2a$10$wTOxgJsVB8xStAQO1saV
+      
       - NODE_ENV=production
     ports:
       - "4000:4000"
